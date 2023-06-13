@@ -18,9 +18,13 @@ function App() {
     ])
 
 
-    const addTask=(title:string)=>{
-        const newTask:TaskType= {id: v1(), title: title, isDone: false}
-        setTasks([newTask,...tasks])
+    const changeIsDone = (newId: string, newIsDone: boolean) => {
+        setTasks( tasks.map(el => el.id === newId ?{...el,isDone:newIsDone } :el))
+    }
+
+    const addTask = (title: string) => {
+        const newTask: TaskType = {id: v1(), title: title, isDone: false}
+        setTasks([newTask, ...tasks])
 
     }
 
@@ -36,6 +40,7 @@ function App() {
                 tasks={tasks}
                 removeTask={removeTask}
                 addTask={addTask}
+                changeIsDone={changeIsDone}
 
             />
         </div>
